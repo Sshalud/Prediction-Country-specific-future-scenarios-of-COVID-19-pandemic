@@ -1,4 +1,3 @@
-import os
 import pandas as pd
 import numpy as np
 import dash
@@ -12,7 +11,7 @@ pd.options.mode.chained_assignment = None  # default='warn'
 from scipy.integrate import odeint
 from scipy import interpolate
 from datetime import datetime as dt
-#import dash,copy
+import dash,copy
 from dash.dependencies import Input, Output, State
 import mydcc
 import base64
@@ -78,10 +77,8 @@ def Model(initial_cases, initial_date, N, alpha, beds_per_100k, gamma, sigma, R_
 ############################################ the dash app layout (Navigation Bar) ################################################
 
 external_stylesheets = [dbc.themes.BOOTSTRAP]
-#external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-
-
 
 app.title = "Prediction"
 server = app.server
@@ -90,24 +87,21 @@ server = app.server
 logo_jpg = 'logo.jpg'
 logo_base64 = base64.b64encode(open(logo_jpg, 'rb').read()).decode('ascii')
 
-jena_jpg = 'model.jpg'
-jena_base64 = base64.b64encode(open(jena_jpg, 'rb').read()).decode('ascii')
+model_jpg = 'model.jpg'
+model_base64 = base64.b64encode(open(model_jpg, 'rb').read()).decode('ascii')
 
 ##  Navbar ##
 nav_bar = html.A(
     dbc.Row(
     [
-         dbc.Col(html.Img( src='data:image/jpg;base64,{}'.format(jena_base64), 
-          style={'marginLeft': 1570, 'textAlign': 'justify',  'padding': '5px 5px 5px 5px'})), #'border': 'thin lightgrey dashed', , 'backgroundColor':'white'
-#        dbc.NavItem(dbc.NavLink("Model", href="/page-b")),
-       # dbc.NavItem(dbc.NavLink("Contributers", href="/page-c")),
+         dbc.Col(html.Img( src='data:image/jpg;base64,{}'.format(model_base64), 
+          style={'marginLeft': 1570, 'textAlign': 'justify',  'padding': '5px 5px 5px 5px'})),
     ],
     no_gutters=True,
-    className="ml-auto",#flex-nowrap mt-3 mt-md-0",
+    className="ml-auto",
     align="center",
-),	href= 'https://www.scribd.com/document/475653133/tikz'#'https://www.schleiden.uni-jena.de/Bioinformatik'   #"https://www.uni-jena.de/",
-
-)
+),	href= 'https://www.scribd.com/document/475653133/tikz',
+),
 
 nav_menu = dbc.Navbar(
     [
@@ -115,10 +109,7 @@ nav_menu = dbc.Navbar(
             # Use row and col to control vertical alignment of logo / brand
             dbc.Row(
                 [
-                    #dbc.Col(html.Img(src=PLOTLY_LOGO, height="30px")),
                     dbc.Col(html.Img( src='data:image/jpg;base64,{}'.format(logo_base64))),
-                    #style={'backgroundColor':'aqua', 'textAlign': 'justify',  'padding': '5px 5px 5px 5px'}) 
-                    #dbc.Col(dbc.NavbarBrand("Prediction", style={'font-size':'3vw', 'font-weight': 'bold', 'font-style': 'oblique'})),
                 ],
                 align="center",
                 no_gutters=True,
@@ -130,7 +121,6 @@ nav_menu = dbc.Navbar(
     ],
     color="darkslategray", 
     dark=True,
-style={'width':'100%',},
 
 )
 
@@ -141,7 +131,7 @@ shalu_jpg = 'shalu1.jpg'
 me_base64 = base64.b64encode(open(shalu_jpg, 'rb').read()).decode('ascii')
 card1 = dbc.Card(
     [
-        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True,), 
+        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True, style={"width": "10rem",'height':'12rem'}), 
         dbc.CardBody(
             [
                 html.H4("Shalu Dwivedi", className="card-title"),
@@ -151,18 +141,18 @@ card1 = dbc.Card(
                     "Université Grenoble Alpes, France",
                     className="card-text",
                 ),
-               # dbc.Button("Go somewhere", color="primary"),
+              
             ]
          ),
-    ],
-    style={"width": "23rem"},
+    ], 
+    style={"width": "23rem", 'height':'15rem', 'backgroundColor':'skyblue', 'border':'none' },
 )
 
 me_jpg = 'suman1.jpg'
 me_base64 = base64.b64encode(open(me_jpg, 'rb').read()).decode('ascii')
 card2 = dbc.Card(
     [
-        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64)),
+        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True, style={"width": "10rem",'height':'12rem'}),
         dbc.CardBody(
             [
                 html.H4("Suman Chakraborty", className="H4"),
@@ -178,37 +168,15 @@ card2 = dbc.Card(
             ]
         ),
     ],
-    style={"width": "23rem"},
+    style={"width": "23rem", 'height':'15rem', 'backgroundColor':'skyblue', 'border':'none' },
 ),
-
-#me_jpg = 'stefan1.jpg'
-#me_base64 = base64.b64encode(open(me_jpg, 'rb').read()).decode('ascii')
-
-#card3 = dbc.Card(
-#    [
-#        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64)),
-#        dbc.CardBody(
-#            [
-#                html.H4("Prof. Stefan Schuster", className="card-title"),
-#                html.P(
-#                    "Department of Bioinformatics,"),
-#                html.P(
-#                    "Friedrich Schiller University, Jena.",
-#                    className="card-text",
-#                ),
-#                #dbc.Button("Go somewhere", color="primary"),
-#            ]
-#        ),
-#    ],
-#    style={"width": "21rem"},
-#),
 
 
 jan_jpg = 'jan1.jpg'
 me_base64 = base64.b64encode(open(jan_jpg, 'rb').read()).decode('ascii')
 card4 = dbc.Card(
     [
-        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64)),
+        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True, style={"width": "10rem",'height':'12rem'}),
         dbc.CardBody(
             [
                 html.H4("Dr. Jan Ewald", className="card-title"),
@@ -218,11 +186,10 @@ card4 = dbc.Card(
                     "Friedrich-Schiller-Universität Jena, Germany",
                     className="card-text",
                 ),
-               # dbc.Button("Go somewhere", color="primary"),
-            ]
+              ]
         ),
     ],
-    style={"width": "23rem"},
+    style={"width": "23rem", 'height':'15rem', 'backgroundColor':'skyblue', 'border':'none' },
 ),
 
 
@@ -428,25 +395,23 @@ app.layout = html.Div([
                         #dcc.Markdown('''Write Here!'''),
 		 html.H6( dbc.Row(
  			           [
-	    dbc.Col(card1, md=3, style={'marginLeft':1,'marginRight':51,'marginTop':10,'marginBottom':10,'padding':'10px 60px 10px 50px'}),
-	    dbc.Col(card2, md=3, style={'marginLeft':51,'marginRight':51,'marginTop':10,'marginBottom':10,'padding':'10px 50px 10px 50px'}),
-            dbc.Col(card4, md=3, style={'marginLeft':51,'marginRight':51,'marginTop':10,'marginBottom':10,'padding':'10px 50px 10px 50px'}),
+	    dbc.Col(card1, md=3, style={'marginLeft':1,'marginRight':51,'marginTop':10,'marginBottom':20,'padding':'10px 60px 80px 50px'}),
+	    dbc.Col(card2, md=3, style={'marginLeft':51,'marginRight':51,'marginTop':10,'marginBottom':20,'padding':'10px 50px 80px 50px'}),
+            dbc.Col(card4, md=3, style={'marginLeft':51,'marginRight':1,'marginTop':10,'marginBottom':20,'padding':'10px 50px 80px 50px'}),
 					]
 				   )
 			),
     
-    html.Div([
+    html.Div(dbc.Row([
 	        dcc.Markdown('''Contacts: For any queries, requests or suggestions, you are most welcome to send an email to 'predictioncovid@gmail.com'. All contributors have access to the email. 
                 We will be glad to answer according to our capacity.'''),
     	], 
-	    style={'marginTop': 10, 'marginBottom': 10, 'textAlign': 'justify', 'font-size': 20 }
-    ),
+	style={'marginLeft': 15, 'marginRight': 15, 'marginTop': 40, 'marginBottom': 30, 'textAlign': 'justify', 'font-size': 20, 'padding': '10px 10px 10px 10px'}
+    ),),
 
-		#html.P("Contacts: For any queries, requests or suggestions, you are most welcome to send an email to 'predictioncovid@gmail.com'. ", className="display-4.1"),
-                       #dcc.Markdown('''Email'''),
 ], id = 'page-a' ),
 ],
-               style = {'display': 'block', 'backgroundColor':'skyblue', 'width':'80%', 'marginTop': 30, 'marginBottom': 30, "margin-right": "auto", "margin-left": "auto", 
+               style = {'display': 'block', 'backgroundColor':'skyblue', 'width':'85%', 'marginTop': 30, 'marginBottom': 30, "margin-right": "auto", "margin-left": "auto", 
                'padding': '30px 10px 30px 10px'}
 )
 
