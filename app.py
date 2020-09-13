@@ -411,7 +411,7 @@ app.layout = html.Div([
 
 ], id = 'page-a' ),
 ],
-               style = {'display': 'block', 'backgroundColor':'skyblue', 'marginTop': '2%', 'marginBottom':'2%', "margin-right": "auto", "margin-left": "auto", 
+               style = { 'backgroundColor':'skyblue', 'marginTop': '2%', 'marginBottom':'2%', "margin-right": "auto", "margin-left": "auto", 
                'padding': '30px 10px 30px 10px'}
 )
 
