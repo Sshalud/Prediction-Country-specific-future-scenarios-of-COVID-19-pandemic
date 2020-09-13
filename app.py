@@ -122,7 +122,7 @@ nav_menu = dbc.Navbar(
     ],
     color="darkslategray", 
     dark=True, 
-    style={'width':'100%', 'bgcolor':"darkslategray",'md':12}
+    style={'width':'98rem', 'bgcolor':"darkslategray"}
 )
 
 
@@ -411,7 +411,7 @@ app.layout = html.Div([
 
 ], id = 'page-a' ),
 ],
-               style = { 'backgroundColor':'skyblue', 'marginTop': '2%', 'marginBottom':'2%', "margin-right": "auto", "margin-left": "auto", 
+               style = {'display':'block', 'width':'98rem','backgroundColor':'skyblue', 'marginTop': '2%', 'marginBottom':'2%', "margin-right": "auto", "margin-left": "auto", 
                'padding': '30px 10px 30px 10px'}
 )
 
