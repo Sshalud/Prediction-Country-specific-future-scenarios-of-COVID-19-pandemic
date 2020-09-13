@@ -76,8 +76,8 @@ def Model(initial_cases, initial_date, N, alpha, beds_per_100k, gamma, sigma, R_
 
 ############################################ the dash app layout (Navigation Bar) ################################################
 
-#external_stylesheets = [dbc.themes.BOOTSTRAP]
-external_stylesheets = [dbc.themes.GRID]
+external_stylesheets = [dbc.themes.BOOTSTRAP]
+#external_stylesheets = [dbc.themes.GRID]
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
@@ -132,7 +132,7 @@ shalu_jpg = 'shalu1.jpg'
 me_base64 = base64.b64encode(open(shalu_jpg, 'rb').read()).decode('ascii')
 card1 = dbc.Card(
     [
-        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True, style={'width':'7rem','height':'8rem','marginLeft': '6%'}), 
+        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True, style={'width':'6rem','height':'8rem','marginLeft': '6%'}), 
         dbc.CardBody(
             [
                 html.H5("Shalu Dwivedi", className="card-title"),
@@ -153,7 +153,7 @@ me_jpg = 'suman1.jpg'
 me_base64 = base64.b64encode(open(me_jpg, 'rb').read()).decode('ascii')
 card2 = dbc.Card(
     [
-        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True, style={'width':'7rem','height':'8rem','marginLeft': '6%'},),
+        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True, style={'width':'6rem','height':'8rem','marginLeft': '6%'},),
         dbc.CardBody(
             [
                 html.H5("Suman Chakraborty", className="card-title"),
@@ -177,7 +177,7 @@ jan_jpg = 'jan1.jpg'
 me_base64 = base64.b64encode(open(jan_jpg, 'rb').read()).decode('ascii')
 card4 = dbc.Card(
     [
-        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True, style={'width':'7rem','height':'8rem','marginLeft': '6%'}),
+        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True, style={'width':'6rem','height':'8rem','marginLeft': '6%'}),
         dbc.CardBody(
             [
                 html.H5("Dr. Jan Ewald", className="card-title"),
@@ -386,29 +386,32 @@ app.layout = html.Div([
                     lock downs by countries) may influence our prognosis, but we will certainly try to keep updating it according to the future trend of the data. Gradually, We will also accommodate 
                     other countries under 'Prediction'. We hope you may admire our effort.'''),
 		], 
-	    style={'width':'98%', "margin-right": "auto", "margin-left": "auto", 'marginTop': 40, 'marginBottom': 30, 'backgroundColor':'aqua', 'textAlign': 'justify', 'font-size': 18, 'border': 'navy dashed', 'padding': '10px 10px 10px 10px'}
+	    style={'width':'98%', "margin-right": "auto", "margin-left": "auto", 'marginTop': 40, 'marginBottom': 30, 'backgroundColor':'lightcoral', 'textAlign': 'justify', 'font-size': 18, 
+        'border': 'firebrick dashed', 'padding': '10px 10px 10px 10px', 'color':'maroon'}
 		),
 
-        html.H1("Contributers", className="display-8", style = {'display': 'block', 'backgroundColor':'skyblue', 'width':'16%', 
+        html.H1("Developers & contacts", className="display-8", style = {'display': 'block', 'backgroundColor':'skyblue', 'width':'32%', 
             "margin-right": "auto",  "margin-left": "auto", 'color':'navy'}),
 
     #html.H1("Contributers"),
                         #dcc.Markdown('''Write Here!'''),
-		 html.H6( dbc.Row(
- 			           [
-	    dbc.Col(card1, md=4, style={"margin-right": "auto", "margin-left": "auto",'marginTop':'2%','padding':'10px 60px 80px 50px'}),
-	    dbc.Col(card2, md=4, style={ "margin-right": "auto", "margin-left": "auto",'marginTop':'2%','padding':'10px 50px 80px 50px'}),
-        dbc.Col(card4, md=4, style={ "margin-right": "auto", "margin-left": "auto",'marginTop':'2%','padding':'10px 50px 80px 50px'}),
-					]
-				   )
-			),
+		 #html.H6( dbc.Row(
+ 			           #[
+	   # dbc.Col(card1, md=4, style={"margin-right": "auto", "margin-left": "auto",'marginTop':'2%','padding':'10px 60px 80px 50px'}),
+	    #dbc.Col(card2, md=4, style={ "margin-right": "auto", "margin-left": "auto",'marginTop':'2%','padding':'10px 50px 80px 50px'}),
+        #dbc.Col(card4, md=4, style={ "margin-right": "auto", "margin-left": "auto",'marginTop':'2%','padding':'10px 50px 80px 50px'}),
+					#]
+		#		   )
+		#	),
     
     html.Div(dbc.Row([
-	        dcc.Markdown('''Contacts: For any queries, requests or suggestions, you are most welcome to send an email to 'predictioncovid@gmail.com'. All contributors have access to the email. 
-                We will be glad to answer according to our capacity.'''),
+	        dcc.Markdown(''' 'Prediction' is developed by: Shalu Dwivedi [(Profile)](https://www.linkedin.com/in/shaludwivedi/), Suman Chakraborty [(Designation)]
+                (https://www.schleiden.uni-jena.de/Bioinformatik_Mitarbeiterliste) and Dr. Jan Ewald [(Profile)](https://www.schleiden.uni-jena.de/Bioinformatik_Ewald). For any queries, 
+                requests or suggestions regarding our COVID-19 prognosis, you are most welcome to send an email to 'predictioncovid@gmail.com'. 
+                All contributors have access to the email. We will be glad to answer according to our capacity.'''),
     	], 
-	style={'width':'98%', "margin-right": "auto", "margin-left": "auto",'marginTop':'2%','marginBottom':'5%', 'border': 'navy dashed','textAlign': 'justify', 'font-size': 20, 
-    'padding': '10px 10px 10px 10px', 'backgroundColor':'steelblue', 'color':'white'}
+	style={'width':'98%', "margin-right": "auto", "margin-left": "auto",'marginTop':'2%','marginBottom':'5%', 'border': 'forestgreen dashed','textAlign': 'justify', 'font-size': 20, 
+    'padding': '10px 10px 10px 10px', 'backgroundColor':'lightgreen', 'color':'darkgreen'}
     ),),
 
 ], id = 'page-a' ),
