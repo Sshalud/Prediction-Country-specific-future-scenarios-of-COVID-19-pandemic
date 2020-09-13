@@ -76,8 +76,8 @@ def Model(initial_cases, initial_date, N, alpha, beds_per_100k, gamma, sigma, R_
 
 ############################################ the dash app layout (Navigation Bar) ################################################
 
-#external_stylesheets = [dbc.themes.BOOTSTRAP]
-external_stylesheets = [dbc.themes.GRID]
+external_stylesheets = [dbc.themes.BOOTSTRAP]
+#external_stylesheets = [dbc.themes.GRID]
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
@@ -230,7 +230,7 @@ controls1 = dbc.Card(
         
         dbc.Button("Apply", id="submit-button-state", style={'backgroundColor':'indianred', 'display': 'inline-block', "width":"10%"}, block=True)
     ],
-    body=True, style={ 'marginBottom':'1%', 'font-size': 18, 'backgroundColor':'aqua', 'width':'98%', "margin-right": "auto",  "margin-left": "auto", 'color':'navy' }, 
+    body=True, style={ 'marginBottom':'1%', 'font-size': 18, 'backgroundColor':'aqua', 'width':'75%', "margin-right": "auto",  "margin-left": "auto", 'color':'navy' }, 
 ),
 
 ##Layout
@@ -448,8 +448,7 @@ def update_graph(_, population):
 
 #India
     elif population==1379956000:
-     dates, S, E, Is, C, R, D, Ia, Q, R_0_over_time, R_1_over_time, total_CFR, daily_CFR, total_Infected, daily_Infected, daily_treatment, daily_recovery, daily_death, B = Model(1.0, "2019-12-27", population, 0.10, 8.65, 0.1428541508163331, 0.3774442401686795, 3.4302250512082697, 1.0007005912433975, 1.6657944669933995, 0.15177083271888495, 255.95506574510938, 94.38312701825069, 1.4917953849161987, 0.01000143100156799, 0.2187670323177473, 0.006732944751207018, 0.7427829181614399, 0.050105836845896624, 0.05001145192912416, 0.10024160588622241, 0.5124987959493479)   
-     dates, S, E, Is, C, R, D, Ia, Q, R_0_over_time, R_1_over_time, total_CFR, daily_CFR, total_Infected, daily_Infected, daily_treatment, daily_recovery, daily_death, B = Model(1.0, "2019-01-07", population, 0.10, 8.65, 0.14285517983097165, 0.35666658586003874, 3.606503965453624, 2.5199955217893875, 2.454279145307359, 0.3023190572522995, 240.42639189692994, 101.32440873143399, 1.543697634652902, 0.01000130779247402, 0.2454283921449709, 0.0034445356726693853, 0.653703267584974, 0.05001967317137948, 0.05000764711139616, 0.07278138830436388, 0.4702976160650683) #0.002758075290312366
+     dates, S, E, Is, C, R, D, Ia, Q, R_0_over_time, R_1_over_time, total_CFR, daily_CFR, total_Infected, daily_Infected, daily_treatment, daily_recovery, daily_death, B = Model(1.0, "2020-01-07", population, 0.10, 8.65, 0.14285517983097165, 0.35666658586003874, 3.606503965453624, 2.5199955217893875, 2.454279145307359, 0.3023190572522995, 240.42639189692994, 101.32440873143399, 1.543697634652902, 0.01000130779247402, 0.2454283921449709, 0.0034445356726693853, 0.653703267584974, 0.05001967317137948, 0.05000764711139616, 0.07278138830436388, 0.4702976160650683) #0.002758075290312366
 
 #Brazil
     if population==212538000:
