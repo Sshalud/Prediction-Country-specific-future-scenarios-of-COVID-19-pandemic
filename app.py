@@ -122,7 +122,7 @@ nav_menu = dbc.Navbar(
     ],
     color="darkslategray", 
     dark=True, 
-    style={'width':'80rem','bgcolor':"darkslategray"}
+    style={'width':'100rem','bgcolor':"darkslategray"}
 )
 
 
