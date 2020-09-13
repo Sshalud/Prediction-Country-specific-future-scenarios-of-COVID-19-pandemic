@@ -76,8 +76,8 @@ def Model(initial_cases, initial_date, N, alpha, beds_per_100k, gamma, sigma, R_
 
 ############################################ the dash app layout (Navigation Bar) ################################################
 
-external_stylesheets = [dbc.themes.BOOTSTRAP]
-#external_stylesheets = [dbc.themes.GRID]
+#external_stylesheets = [dbc.themes.BOOTSTRAP]
+external_stylesheets = [dbc.themes.GRID]
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
