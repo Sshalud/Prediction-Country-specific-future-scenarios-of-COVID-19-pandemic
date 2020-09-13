@@ -77,6 +77,7 @@ def Model(initial_cases, initial_date, N, alpha, beds_per_100k, gamma, sigma, R_
 ############################################ the dash app layout (Navigation Bar) ################################################
 
 external_stylesheets = [dbc.themes.BOOTSTRAP]
+#external_stylesheets = [dbc.themes.GRID]
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
@@ -94,12 +95,12 @@ model_base64 = base64.b64encode(open(model_jpg, 'rb').read()).decode('ascii')
 nav_bar = html.A(
     dbc.Row(
     [
-         dbc.Col(html.Img( src='data:image/jpg;base64,{}'.format(model_base64), 
-          style={'marginLeft': '1200%','marginRight': '20%','width':'100%', 'padding': '5px 5px 5px 5px'})),
+         dbc.Col(html.Img( src='data:image/jpg;base64,{}'.format(model_base64), #)),
+          style={'marginLeft':1000,'padding': '5px 5px 5px 5px'})),
     ],
-    no_gutters=True,
+ #   no_gutters=True,
     className="ml-auto",
-    align="center",
+    align="end",
 ),	href= 'https://www.scribd.com/document/475653133/tikz',
 ),
 
@@ -111,17 +112,17 @@ nav_menu = dbc.Navbar(
                 [
                     dbc.Col(html.Img( src='data:image/jpg;base64,{}'.format(logo_base64))),
                 ],
-                align="center",
+                align="start",
                 no_gutters=True,
             ),
             href="/page-a",
         ),
         dbc.NavbarToggler(id="navbar-toggler"),
-        dbc.Collapse(nav_bar, id="navbar-collapse", navbar=True),
+        dbc.Collapse(nav_bar, id="navbar-collapse", navbar=True, ),
     ],
     color="darkslategray", 
-    dark=True,
-    style={'width':'100%'}
+    dark=True, 
+    style={'width':'100%', 'bgcolor':"darkslategray",'md':12}
 )
 
 
@@ -131,36 +132,36 @@ shalu_jpg = 'shalu1.jpg'
 me_base64 = base64.b64encode(open(shalu_jpg, 'rb').read()).decode('ascii')
 card1 = dbc.Card(
     [
-        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True, style={'width':'10rem','height':'12rem','marginLeft': '6%'}), 
+        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True, style={'width':'6rem','height':'8rem','marginLeft': '6%'}), 
         dbc.CardBody(
             [
-                html.H4("Shalu Dwivedi", className="card-title"),
+                html.H5("Shalu Dwivedi", className="card-title"),
                 html.P(
                     "MS, Data Science,"),
                 html.P(
                     "Université Grenoble Alpes, France",
-                    className="card-text",
+                    className="mb-3",
                 ),
               
             ]
          ),
     ], 
-    style={"width": "23rem", 'height':'15rem', 'backgroundColor':'skyblue', 'border':'none' },
+    style={"width": "19rem", 'height':'15rem', 'backgroundColor':'skyblue', 'border':'none', 'font-size':12 },
 )
 
 me_jpg = 'suman1.jpg'
 me_base64 = base64.b64encode(open(me_jpg, 'rb').read()).decode('ascii')
 card2 = dbc.Card(
     [
-        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True, style={'width':'10rem','height':'12rem','marginLeft': '6%'}),
+        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True, style={'width':'6rem','height':'8rem','marginLeft': '6%'},),
         dbc.CardBody(
             [
-                html.H4("Suman Chakraborty", className="H4"),
+                html.H5("Suman Chakraborty", className="card-title"),
                 html.P(
                     "Department of Bioinformatics,"),
                 html.P(
                     "Friedrich-Schiller-Universität Jena, Germany",
-                    className="card-text",
+                    className="mb-3",
                 
                 ),
                 #dbc.Button("view profile", color="primary"),
@@ -168,7 +169,7 @@ card2 = dbc.Card(
             ]
         ),
     ],
-    style={"width": "23rem", 'height':'15rem', 'backgroundColor':'skyblue', 'border':'none' },
+    style={"width": "19rem", 'height':'15rem', 'backgroundColor':'skyblue', 'border':'none', 'font-size':12  },
 ),
 
 
@@ -176,20 +177,20 @@ jan_jpg = 'jan1.jpg'
 me_base64 = base64.b64encode(open(jan_jpg, 'rb').read()).decode('ascii')
 card4 = dbc.Card(
     [
-        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True, style={'width':'10rem','height':'12rem','marginLeft': '6%'}),
+        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True, style={'width':'6rem','height':'8rem','marginLeft': '6%'}),
         dbc.CardBody(
             [
-                html.H4("Dr. Jan Ewald", className="card-title"),
+                html.H5("Dr. Jan Ewald", className="card-title"),
                 html.P(
                     "Department of Bioinformatics,"),
                 html.P(
                     "Friedrich-Schiller-Universität Jena, Germany",
-                    className="card-text",
+                    className="mb-3",
                 ),
               ]
         ),
     ],
-    style={"width": "23rem", 'height':'15rem', 'backgroundColor':'skyblue', 'border':'none' },
+    style={"width": "19rem", 'height':'15rem', 'backgroundColor':'skyblue', 'border':'none', 'font-size':12  },
 ),
 
 
@@ -222,14 +223,14 @@ controls1 = dbc.Card(
 				                {'label': 'UK', 'value': 67871000},
                  				{'label': 'USA', 'value': 330905000}
   					  ],
-   					 value= 83765000, labelStyle={'display': 'button', "width":"10%",}
+   					 value= 83765000, labelStyle={'display': 'button', "width":'10%',}
 				), 
  	 ]
        		 ),
         
         dbc.Button("Apply", id="submit-button-state", style={'backgroundColor':'indianred', 'display': 'inline-block', "width":"10%"}, block=True)
     ],
-    body=True, style={ 'marginBottom':'1%', 'font-size': 20, 'backgroundColor':'aqua', 'width':'98%', "margin-right": "auto",  "margin-left": "auto" }, 
+    body=True, style={ 'marginBottom':'1%', 'font-size': 14, 'backgroundColor':'aqua', 'width':'98%', "margin-right": "auto",  "margin-left": "auto" }, 
 ),
 
 ##Layout
@@ -239,7 +240,7 @@ app.layout = html.Div([
 		nav_menu,
 		html.Div([html.Div([
 
-		html.H1("Prediction: Country specific future scenarios of COVID-19 pandemic", className="display-8", style = {'display': 'block', 'backgroundColor':'skyblue', 'width':'98%', "margin-right": "auto",  "margin-left": "auto"}),
+		html.H2("Prediction: Country specific future scenarios of COVID-19 pandemic", className="display-8", style = {'display': 'block', 'backgroundColor':'skyblue', 'width':'98%', "margin-right": "auto",  "margin-left": "auto"}),
     #html.P("Country specific future scenarios of COVID-19 pandemic.", className="lead"),
        		html.Hr(className="my-2"),
                 dcc.Markdown(''' We have developed a SEIR (compartmental) model to predict the future COVID-19 cases and evaluate its impact on the health care system. Our website contains the 
@@ -248,7 +249,7 @@ app.layout = html.Div([
                   Apparently, it is almost impossible to find the entire infected cases not only because most infected have very mild or no symptoms (not even noticeable), but also it is hard to 
                   track how many contacts have been made by an infected before being tested as positive. To view the results, please select the country you like, and press the 'Apply' button.''',
 
-          style = {'display': 'block', 'backgroundColor':'skyblue', 'textAlign': 'justify','width':'98%', 'font-size': 20, "margin-right": "auto", "margin-left": "auto", 'marginBottom':'2%'}), 
+          style = {'display': 'block', 'backgroundColor':'skyblue', 'textAlign': 'justify','width':'98%', 'font-size': 14, "margin-right": "auto", "margin-left": "auto", 'marginBottom':'2%'}), 
 
 	html.H6(dbc.Row(
 		    [
@@ -261,7 +262,7 @@ app.layout = html.Div([
                         dcc.Markdown('''Susceptible is the population who is supposed to be infected by COVID-19. Initially, it is the entire population of the country and as the pandemic progress, 
                             the volume of susceptible population declines. Final size of susceptible population (in our case, the susceptible on January 2022) represents the number of remaining 
                             uninfected people.''',
-                        style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 20 }),
+                        style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 14 }),
 
                         dbc.Row(
                             [
@@ -271,7 +272,7 @@ app.layout = html.Div([
                         ),
                         html.Hr(className="my-2"),
                         dcc.Markdown(''' 'Daily infected' literally means the number of infections per day.''' ,
-                        style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 20 }),
+                        style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 14 }),
 
                        dbc.Row(
                             [
@@ -281,7 +282,7 @@ app.layout = html.Div([
                         ),
                         html.Hr(className="my-2"),
                         dcc.Markdown(''' 'Total infected' has been just the cumulative representation of 'Daily infected'.''' ,
-                        style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 20 }),    
+                        style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 14 }),    
  
                        dbc.Row(
                             [
@@ -292,7 +293,7 @@ app.layout = html.Div([
                         html.Hr(className="my-2"),
                         dcc.Markdown('''Active cases represent the population who are still infected on a daily basis. This compartment counts an infected for several days until that particular 
                             infected become recovered or dead.''',
-                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 20 }),
+                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 14 }),
 
                         dbc.Row(
                             [
@@ -303,7 +304,7 @@ app.layout = html.Div([
                         html.Hr(className="my-2"),
                         dcc.Markdown('''Critical compartment is designed to represent the number of infected having severe symptoms and require ICU facilities on a daily basis. Here, a patient can 
                             remain critical for several days until his/her recovery or death.''',
-                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 20 }),
+                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 14 }),
 
                         dbc.Row(
                             [
@@ -313,7 +314,7 @@ app.layout = html.Div([
                         ),
                         html.Hr(className="my-2"),
                         dcc.Markdown('''Recovered compartment is the cumulative representation of recoveries on a daily basis. ''',
-                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 20 }),
+                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 14 }),
 
                         dbc.Row(
                             [
@@ -323,7 +324,7 @@ app.layout = html.Div([
                         ),
                         html.Hr(className="my-2"),
                         dcc.Markdown('''Dead compartment is the cumulative representation of deaths on a daily basis. ''',
-                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 20 }),
+                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 14 }),
 
  
                        dbc.Row(
@@ -334,7 +335,7 @@ app.layout = html.Div([
                         ),
                         html.Hr(className="my-2"),
                         dcc.Markdown(''' 'Case Fatality Rate (CFR)' takes the ratio of 'Dead' and 'Total infected' per day. This way we can predict the impact of COVID-19 on infected population.''',
-                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 20 }),
+                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 14 }),
 
                         dbc.Row(
                             [
@@ -346,7 +347,7 @@ app.layout = html.Div([
                         dcc.Markdown(''' 'Recoveries and Deaths in ICU' compartment is specially designed to evaluate the performance of health care. The patients who are currently 'Critical' and 
                             admitted in ICUs are accommodated in this compartment. Here, patients can either recover or die, but definitely after getting treatment. A well equipped health care 
                             consists sufficient ICU beds for critical patients, whereas an under equipped health care system is responsible for deaths of critical patients without treatment.''',
-                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 20 }),
+                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 14 }),
 
                         dbc.Row(
                             [
@@ -360,7 +361,7 @@ app.layout = html.Div([
                             because of insufficient ICUs and inability to admit critical patients. Patients are compelled to die due to this special situation, which can be described as “Triage”. 
                           By definition, Triage is a situation of classifying patients, according to the severity of their disease, age, as well as wealth to afford the treatment. 
                           An intense triage situation may indicate towards reform in health care of the corresponding countries.''',
-                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 20 }),
+                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 14 }),
 
                         dbc.Row(
                             [
@@ -384,7 +385,7 @@ app.layout = html.Div([
                     lock downs by countries) may influence our prognosis, but we will certainly try to keep updating it according to the future trend of the data. Gradually, We will also accommodate 
                     other countries under 'Prediction'. We hope you may admire our effort.'''),
 		], 
-	    style={'width':'98%', "margin-right": "auto", "margin-left": "auto", 'marginTop': 40, 'marginBottom': 30, 'backgroundColor':'cyan', 'textAlign': 'justify', 'font-size': 20, 'border': 'navy dashed', 'padding': '10px 10px 10px 10px'}
+	    style={'width':'98%', "margin-right": "auto", "margin-left": "auto", 'marginTop': 40, 'marginBottom': 30, 'backgroundColor':'cyan', 'textAlign': 'justify', 'font-size': 14, 'border': 'navy dashed', 'padding': '10px 10px 10px 10px'}
 		),
 
         html.H1("Contributers", className="display-8", style = {'display': 'block', 'backgroundColor':'skyblue', 'width':'16%', 
@@ -394,9 +395,9 @@ app.layout = html.Div([
                         #dcc.Markdown('''Write Here!'''),
 		 html.H6( dbc.Row(
  			           [
-	    dbc.Col(card1, md=3, style={'width':'98%', "margin-right": "auto", "margin-left": "auto",'marginTop':'2%','marginBottom':'2%','padding':'10px 60px 80px 50px'}),
-	    dbc.Col(card2, md=3, style={'width':'98%', "margin-right": "auto", "margin-left": "auto",'marginTop':'2%','marginBottom':'2%', 'padding':'10px 50px 80px 50px'}),
-            dbc.Col(card4, md=3, style={'width':'98%', "margin-right": "auto", "margin-left": "auto",'marginTop':'2%','marginBottom':'2%', 'padding':'10px 50px 80px 50px'}),
+	    dbc.Col(card1, md=4, style={"margin-right": "auto", "margin-left": "auto",'marginTop':'2%','padding':'10px 60px 80px 50px'}),
+	    dbc.Col(card2, md=4, style={ "margin-right": "auto", "margin-left": "auto",'marginTop':'2%','padding':'10px 50px 80px 50px'}),
+            dbc.Col(card4, md=4, style={ "margin-right": "auto", "margin-left": "auto",'marginTop':'2%','padding':'10px 50px 80px 50px'}),
 					]
 				   )
 			),
@@ -405,7 +406,7 @@ app.layout = html.Div([
 	        dcc.Markdown('''Contacts: For any queries, requests or suggestions, you are most welcome to send an email to 'predictioncovid@gmail.com'. All contributors have access to the email. 
                 We will be glad to answer according to our capacity.'''),
     	], 
-	style={'width':'98%', "margin-right": "auto", "margin-left": "auto",'marginTop':'2%','marginBottom':'5%', 'border': 'navy dashed','textAlign': 'justify', 'font-size': 20, 'padding': '10px 10px 10px 10px'}
+	style={'width':'98%', "margin-right": "auto", "margin-left": "auto",'marginTop':'2%','marginBottom':'5%', 'border': 'navy dashed','textAlign': 'justify', 'font-size': 14, 'padding': '10px 10px 10px 10px'}
     ),),
 
 ], id = 'page-a' ),
@@ -438,16 +439,16 @@ def update_graph(_, population):
 
 #Germany
     if population==83765000:
-     dates, S, E, Is, C, R, D, Ia, Q, R_0_over_time, R_1_over_time, total_CFR, daily_CFR, total_Infected, daily_Infected, daily_treatment, daily_recovery, daily_death, B = Model(1.0, "2019-12-30", population, 0.38, 67.4, 0.14285711652732627, 0.3342992899030504, 3.856594675509679, 2.278673226867856, 2.229576131414006, 0.007821685206467144, 174.07826494329865, 92.92937222172124, 0.7022320926896833, 0.01794406076877122, 0.3827579369891642, 0.009950499999999925, 0.6590641230043458, 0.05000009251092915, 0.07373232269746242, 0.17203353253589226, 0.5559769464031789)
+     dates, S, E, Is, C, R, D, Ia, Q, R_0_over_time, R_1_over_time, total_CFR, daily_CFR, total_Infected, daily_Infected, daily_treatment, daily_recovery, daily_death, B = Model(1.0, "2019-12-28", population, 0.38, 67.4, 0.12984078673112479, 0.370412212666437, 3.774914306692381, 2.391521374361648, 2.5558296678605354, 0.005993498046712659, 180.3225428685107, 95.90497606043034, 0.6604888898883905, 0.031090750924749708, 0.3876199735537736, 0.0001495000000005142, 0.6112956476396956, 0.05000629213232478, 0.0923057014334686, 0.19109293175174272, 0.5409258981269481)
 
 #India
     elif population==1379956000:
-     #dates, S, E, Is, C, R, D, Ia, Q, R_0_over_time, R_1_over_time, total_CFR, daily_CFR, total_Infected, daily_Infected, daily_treatment, daily_recovery, daily_death, B = Model(1.0, "2019-12-27", population, 0.10, 8.65, 0.1428541508163331, 0.3774442401686795, 3.4302250512082697, 1.0007005912433975, 1.6657944669933995, 0.15177083271888495, 255.95506574510938, 94.38312701825069, 1.4917953849161987, 0.01000143100156799, 0.2187670323177473, 0.006732944751207018, 0.7427829181614399, 0.050105836845896624, 0.05001145192912416, 0.10024160588622241, 0.5124987959493479)   
-     dates, S, E, Is, C, R, D, Ia, Q, R_0_over_time, R_1_over_time, total_CFR, daily_CFR, total_Infected, daily_Infected, daily_treatment, daily_recovery, daily_death, B = Model(1.0, "2019-12-27", population, 0.10, 8.65, 0.14285361169064995, 0.34160675822748704, 3.4805834448404624, 2.702802270053786, 2.2766264999066648, 0.7101679027391438, 247.75367881057292, 98.87125095449935, 1.4937950586138755, 0.010000576846418427, 0.21531056345544114, 0.002758075290312366, 0.7993996260167793, 0.050007388727516464, 0.05000983200812087, 0.0651010166967904, 0.3711264230753076) #0.002758075290312366
+     dates, S, E, Is, C, R, D, Ia, Q, R_0_over_time, R_1_over_time, total_CFR, daily_CFR, total_Infected, daily_Infected, daily_treatment, daily_recovery, daily_death, B = Model(1.0, "2019-12-27", population, 0.10, 8.65, 0.1428541508163331, 0.3774442401686795, 3.4302250512082697, 1.0007005912433975, 1.6657944669933995, 0.15177083271888495, 255.95506574510938, 94.38312701825069, 1.4917953849161987, 0.01000143100156799, 0.2187670323177473, 0.006732944751207018, 0.7427829181614399, 0.050105836845896624, 0.05001145192912416, 0.10024160588622241, 0.5124987959493479)   
+     dates, S, E, Is, C, R, D, Ia, Q, R_0_over_time, R_1_over_time, total_CFR, daily_CFR, total_Infected, daily_Infected, daily_treatment, daily_recovery, daily_death, B = Model(1.0, "2019-01-07", population, 0.10, 8.65, 0.14285517983097165, 0.35666658586003874, 3.606503965453624, 2.5199955217893875, 2.454279145307359, 0.3023190572522995, 240.42639189692994, 101.32440873143399, 1.543697634652902, 0.01000130779247402, 0.2454283921449709, 0.0034445356726693853, 0.653703267584974, 0.05001967317137948, 0.05000764711139616, 0.07278138830436388, 0.4702976160650683) #0.002758075290312366
 
 #Brazil
     if population==212538000:
-     dates, S, E, Is, C, R, D, Ia, Q, R_0_over_time, R_1_over_time, total_CFR, daily_CFR, total_Infected, daily_Infected, daily_treatment, daily_recovery, daily_death, B = Model(1.0, "2020-01-08", population, 0.10, 14.95, 0.12015163689888256, 0.4115790849415934, 3.5871864913042364, 2.737903100494403, 2.6865540456404133, 0.08163143075869947, 226.7726709303254, 99.09916788077821, 1.3288117533746802, 0.04949267261830392, 0.4778365157009254, 0.005835112029002233, 0.6079447818740726, 0.06360239169983431, 0.05029241152578685, 0.10087222360032012, 0.5561964104613328)
+     dates, S, E, Is, C, R, D, Ia, Q, R_0_over_time, R_1_over_time, total_CFR, daily_CFR, total_Infected, daily_Infected, daily_treatment, daily_recovery, daily_death, B = Model(1.0, "2020-01-22", population, 0.10, 14.95, 0.1305245028905751, 0.4627117002701086, 3.754827792054293, 2.064909117189166, 2.083599363128264, 0.08732566287730936, 246.3040954283558, 85.62952781409258, 1.2663707059472125, 0.04229390529141109, 0.460770297263991, 0.009950499999873163, 0.6491978198998314, 0.05000013417990671, 0.050000411304217236, 0.05000788163161523, 0.5524370162316564)
 
 #Italy
     elif population==60446000:
@@ -459,11 +460,11 @@ def update_graph(_, population):
  
 #Russia
     elif population==145927000:
-     dates, S, E, Is, C, R, D, Ia, Q, R_0_over_time, R_1_over_time, total_CFR, daily_CFR, total_Infected, daily_Infected, daily_treatment, daily_recovery, daily_death, B = Model(1.0, "2020-01-01", population, 0.15, 35.6, 0.14285664777288795, 0.27509588714149175, 3.743733012847125, 1.960603806431587, 1.45237095923701, 0.00021347840845841308, 242.8916351639893, 109.13633539652668, 1.4185825846717175, 0.010000239138313452, 0.27043982558732965, 0.001, 0.6045706586142618, 0.05328043817209133, 0.05000004390749481, 0.05212218283520256, 0.4835060216028005)
+     dates, S, E, Is, C, R, D, Ia, Q, R_0_over_time, R_1_over_time, total_CFR, daily_CFR, total_Infected, daily_Infected, daily_treatment, daily_recovery, daily_death, B = Model(1.0, "2020-01-01", population, 0.15, 35.6, 0.14269804919303197, 0.20032001947715206, 4.184919897978229, 2.614752123021756, 2.4304057089263904, 0.38684061178610546, 230.1213943349641, 100.66203323097957, 1.4714916492935983, 0.010000978776059216, 0.20155704190341223, 0.002999999999999846, 0.7898249333418573, 0.05000012222551507, 0.050000038607246666, 0.050001931295602244, 0.42119706910056287)
 
 #Spain
     elif population==46740000:
-     dates, S, E, Is, C, R, D, Ia, Q, R_0_over_time, R_1_over_time, total_CFR, daily_CFR, total_Infected, daily_Infected, daily_treatment, daily_recovery, daily_death, B = Model(1.0, "2019-12-20", population, 0.247, 14.7, 0.13060838700697952, 0.39452560961360983, 3.761457924976498, 2.5932524408373343, 2.4208607032327003, 0.017832866943850063, 185.52926855640496, 94.80806385609802, 0.5103098675568059, 0.04798422777788632, 0.5556550953420802, 0.009996150021930456, 0.553512933252, 0.08578738735304316, 0.13728323772431247, 0.09054207807314686, 0.5174948765716006)
+     dates, S, E, Is, C, R, D, Ia, Q, R_0_over_time, R_1_over_time, total_CFR, daily_CFR, total_Infected, daily_Infected, daily_treatment, daily_recovery, daily_death, B = Model(1.0, "2019-12-20", population, 0.247, 14.7, 0.1254554440309099, 0.42428295543397276, 3.829080163105371, 2.4932863210009852, 2.565524510578827, 0.01854529282707962, 196.0278056384305, 95.64233911155168, 0.5696715274075116, 0.054082267264861456, 0.651206924466544, 0.006423165217834747, 0.5081623043012692, 0.08639393586402293, 0.15999682590336084, 0.1131217266361835, 0.4999687616919529)
 
 #Mexico
     elif population==128921000:
@@ -475,7 +476,7 @@ def update_graph(_, population):
 
 #UK
     elif population==67871000:
-     dates, S, E, Is, C, R, D, Ia, Q, R_0_over_time, R_1_over_time, total_CFR, daily_CFR, total_Infected, daily_Infected, daily_treatment, daily_recovery, daily_death, B = Model(1.0, "2020-01-01", population, 0.157, 16.7, 0.11745292765869779, 0.4252358692670944, 3.730737873130537, 2.0253958869512725, 3.0453536816164504, 0.05494493650510083, 201.9445810733457, 95.22754012445542, 0.8706406867181241, 0.04754442454668676, 0.48826108272200985,  0.009950499999999973, 0.6140174049168234, 0.06144913253639526, 0.21781726157586323, 0.19998781442322577, 0.5718607066768573)
+     dates, S, E, Is, C, R, D, Ia, Q, R_0_over_time, R_1_over_time, total_CFR, daily_CFR, total_Infected, daily_Infected, daily_treatment, daily_recovery, daily_death, B = Model(1.0, "2019-12-20", population, 0.157, 16.7, 0.12715967925579497, 0.37730941878658386, 3.6928441089123463, 2.4947944337054424, 2.4455148335281915, 0.027972945289788855, 227.0373803897242, 102.8957730927176, 0.7361125036336488, 0.04990947370921135, 0.5819273292129709, 0.009998234145419617, 0.5396349098586515, 0.07862972895061905, 0.0938828536720864, 0.08313369345665671, 0.5161576558658345)
 
 #USA
     elif population==330905000:
@@ -483,7 +484,7 @@ def update_graph(_, population):
 
 #France
     elif population==65255000:
-     dates, S, E, Is, C, R, D, Ia, Q, R_0_over_time, R_1_over_time, total_CFR, daily_CFR, total_Infected, daily_Infected, daily_treatment, daily_recovery, daily_death, B = Model(1.0, "2019-12-23", population, 0.244, 22.3, 0.12501095887746133, 0.4010353677490338, 3.54760443249231, 2.9179894747632473, 2.6820584978839426, 0.02723560837420227, 195.5839978595899, 100.63415224615615, 0.5186471309308305, 0.057999304199539185, 0.4812324459684273, 0.005038495344608297, 0.5801823213678279, 0.0922750624079333, 0.12154463301556714, 0.1293473506774852, 0.5398652343486425)
+     dates, S, E, Is, C, R, D, Ia, Q, R_0_over_time, R_1_over_time, total_CFR, daily_CFR, total_Infected, daily_Infected, daily_treatment, daily_recovery, daily_death, B = Model(1.0, "2019-12-26", population, 0.244, 22.3, 0.12919289160603295, 0.39802968219140467, 3.665918660435665, 2.9269166975924867, 2.534294636205726, 0.03695540868883431, 210.87917058763182, 94.66877688567514, 0.559854963155523, 0.05596965447322385, 0.5283242004338682, 0.00521845863664777, 0.5825361227354474, 0.08446539070715221, 0.11689021676434563, 0.13976102706025856, 0.5470382456455533)
 
 #Chile
     elif population==19112000:
@@ -511,7 +512,7 @@ def update_graph(_, population):
 
 #Netherlands
     elif population==17133000:
-     dates, S, E, Is, C, R, D, Ia, Q, R_0_over_time, R_1_over_time, total_CFR, daily_CFR, total_Infected, daily_Infected, daily_treatment, daily_recovery, daily_death, B = Model(1.0, "2019-12-30", population, 0.346, 18.4, 0.12754403748884122, 0.4122210654589048, 3.45436413046214, 2.2850268786803998, 1.8683201874513067, 0.06721312928882779, 207.8422440977505, 90.75349987053771, 0.6138733024260443, 0.05861234989379224, 0.5183025505918706, 0.0040598116695319654, 0.558391864953698, 0.09536156453369107, 0.13336358435921536, 0.13867929326961778, 0.5375085083816531)
+     dates, S, E, Is, C, R, D, Ia, Q, R_0_over_time, R_1_over_time, total_CFR, daily_CFR, total_Infected, daily_Infected, daily_treatment, daily_recovery, daily_death, B = Model(1.0, "2019-12-30", population, 0.346, 18.4, 0.12660302074592797, 0.418038321197927, 3.478303054700837, 2.7156423289332325, 2.0427539587825634, 0.060388913176838116, 208.7978463026444, 88.5273093928572, 0.603615158903559, 0.060377821787094506, 0.5290072376164849, 0.004142475349822342, 0.5649483872909955, 0.09652744147389149, 0.13049962289177972, 0.13368758430492322, 0.5448541065847047)
 
 #Sweden
     elif population==10096000:
