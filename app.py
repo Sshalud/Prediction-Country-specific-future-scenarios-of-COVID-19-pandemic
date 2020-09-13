@@ -230,7 +230,7 @@ controls1 = dbc.Card(
         
         dbc.Button("Apply", id="submit-button-state", style={'backgroundColor':'indianred', 'display': 'inline-block', "width":"10%"}, block=True)
     ],
-    body=True, style={ 'marginBottom':'1%', 'font-size': 18, 'backgroundColor':'aqua', 'width':'75%', "margin-right": "auto",  "margin-left": "auto", 'color':'navy' }, 
+    body=True, style={ 'marginBottom':'1%', 'font-size': 18, 'backgroundColor':'aqua', 'width':'75rem', "margin-right": "auto",  "margin-left": "auto", 'color':'navy' }, 
 ),
 
 ##Layout
