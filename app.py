@@ -96,7 +96,7 @@ nav_bar = html.A(
     dbc.Row(
     [
          dbc.Col(html.Img( src='data:image/jpg;base64,{}'.format(model_base64), #)),
-          style={'marginLeft':'80rem','padding': '5px 5px 5px 5px'})),
+          style={'marginLeft':'70rem','padding': '5px 5px 5px 5px'})),
     ],
  #   no_gutters=True,
     className="ml-auto",
@@ -122,7 +122,7 @@ nav_menu = dbc.Navbar(
     ],
     color="darkslategray", 
     dark=True, 
-    style={'bgcolor':"darkslategray", 'md':12}
+    style={'width':'80rem','bgcolor':"darkslategray"}
 )
 
 
