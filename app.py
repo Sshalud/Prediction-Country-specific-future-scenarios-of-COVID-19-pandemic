@@ -96,7 +96,7 @@ nav_bar = html.A(
     dbc.Row(
     [
          dbc.Col(html.Img( src='data:image/jpg;base64,{}'.format(model_base64), #)),
-          style={'marginLeft':'80rem','padding': '5px 5px 5px 5px'})),
+          style={'marginLeft':'70rem','padding': '5px 5px 5px 5px'})),
     ],
  #   no_gutters=True,
     className="ml-auto",
@@ -413,7 +413,7 @@ app.layout = html.Div([
 
 ], id = 'page-a' ),
 ],
-               style = {'display':'block', 'width':'95rem','backgroundColor':'skyblue', 'marginTop': '2%', 'marginBottom':'2%', "margin-right": "auto", "margin-left": "auto", 
+               style = {'display':'block', 'width':'80rem','backgroundColor':'skyblue', 'marginTop': '2%', 'marginBottom':'2%', "margin-right": "auto", "margin-left": "auto", 
                'padding': '30px 10px 30px 10px'}
 )
 
