@@ -66,8 +66,8 @@ def Model(initial_cases, initial_date, N, alpha, beds_per_100k, gamma, sigma, R_
         (R[i]-R[i-1]), (D[i]-D[i-1])) > 10 else 0 for i in range(1, len(t))]
 
     daily_treatment = [0] + [min(C[i], Beds(i)) for i in range(1, len(t))]
-    daily_recovery =  [0] + [(1-p_C_to_D) * min(C[i], Beds(i)) for i in range(1, len(t))] 
-    daily_death = [0] + [p_C_to_D * min(C[i], Beds(i)) for i in range(1, len(t))]
+    daily_recovery =  [0] + [l3 * (1-p_C_to_D) * min(C[i], Beds(i)) for i in range(1, len(t))] 
+    daily_death = [0] + [l2 * p_C_to_D * min(C[i], Beds(i)) for i in range(1, len(t))]
     
     dates = pd.date_range(start=np.datetime64(initial_date), periods=days, freq="D")
 
@@ -96,12 +96,12 @@ nav_bar = html.A(
     dbc.Row(
     [
          dbc.Col(html.Img( src='data:image/jpg;base64,{}'.format(model_base64), #)),
-          style={'marginLeft':'70rem','padding': '5px 5px 5px 5px'})),
+          style={'marginLeft':'80rem','padding': '5px 5px 5px 5px'})),
     ],
  #   no_gutters=True,
     className="ml-auto",
     align="end",
-),	href= 'https://www.scribd.com/document/475653133/tikz',
+),	href= 'https://issuu.com/prediction/docs/model',
 ),
 
 nav_menu = dbc.Navbar(
@@ -122,7 +122,7 @@ nav_menu = dbc.Navbar(
     ],
     color="darkslategray", 
     dark=True, 
-    style={'width':'100rem','bgcolor':"darkslategray"}
+    style={'width':'120rem','bgcolor':"darkslategray"}
 )
 
 
@@ -132,7 +132,7 @@ shalu_jpg = 'shalu1.jpg'
 me_base64 = base64.b64encode(open(shalu_jpg, 'rb').read()).decode('ascii')
 card1 = dbc.Card(
     [
-        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True, style={'width':'6rem','height':'8rem','marginLeft': '6%'}), 
+        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True, style={'width':'7rem','height':'8rem','marginLeft': '6%'}), 
         dbc.CardBody(
             [
                 html.H5("Shalu Dwivedi", className="card-title"),
@@ -146,14 +146,14 @@ card1 = dbc.Card(
             ]
          ),
     ], 
-    style={"width": "19rem", 'height':'15rem', 'backgroundColor':'skyblue', 'border':'none', 'font-size':12 },
+    style={"width": "19rem", 'height':'15rem', 'backgroundColor':'skyblue', 'border':'none', 'font-size':16 },
 )
 
 me_jpg = 'suman1.jpg'
 me_base64 = base64.b64encode(open(me_jpg, 'rb').read()).decode('ascii')
 card2 = dbc.Card(
     [
-        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True, style={'width':'6rem','height':'8rem','marginLeft': '6%'},),
+        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True, style={'width':'7rem','height':'8rem','marginLeft': '6%'},),
         dbc.CardBody(
             [
                 html.H5("Suman Chakraborty", className="card-title"),
@@ -169,7 +169,7 @@ card2 = dbc.Card(
             ]
         ),
     ],
-    style={"width": "19rem", 'height':'15rem', 'backgroundColor':'skyblue', 'border':'none', 'font-size':12  },
+    style={"width": "19rem", 'height':'15rem', 'backgroundColor':'skyblue', 'border':'none', 'font-size':16  },
 ),
 
 
@@ -177,7 +177,7 @@ jan_jpg = 'jan1.jpg'
 me_base64 = base64.b64encode(open(jan_jpg, 'rb').read()).decode('ascii')
 card4 = dbc.Card(
     [
-        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True, style={'width':'6rem','height':'8rem','marginLeft': '6%'}),
+        dbc.CardImg(src='data:image/jpg;base64,{}'.format(me_base64), top=True, style={'width':'7rem','height':'8rem','marginLeft': '6%'}),
         dbc.CardBody(
             [
                 html.H5("Dr. Jan Ewald", className="card-title"),
@@ -190,7 +190,7 @@ card4 = dbc.Card(
               ]
         ),
     ],
-    style={"width": "19rem", 'height':'15rem', 'backgroundColor':'skyblue', 'border':'none', 'font-size':12  },
+    style={"width": "19rem", 'height':'15rem', 'backgroundColor':'skyblue', 'border':'none', 'font-size':16  },
 ),
 
 
@@ -230,7 +230,7 @@ controls1 = dbc.Card(
         
         dbc.Button("Apply", id="submit-button-state", style={'backgroundColor':'indianred', 'display': 'inline-block', "width":"10%"}, block=True)
     ],
-    body=True, style={ 'marginBottom':'1%', 'font-size': 14, 'backgroundColor':'aqua', 'width':'98%', "margin-right": "auto",  "margin-left": "auto" }, 
+    body=True, style={ 'marginBottom':'1%', 'font-size': 18, 'backgroundColor':'aqua', 'width':'98%', "margin-right": "auto",  "margin-left": "auto", 'color':'navy' }, 
 ),
 
 ##Layout
@@ -240,7 +240,8 @@ app.layout = html.Div([
 		nav_menu,
 		html.Div([html.Div([
 
-		html.H2("Prediction: Country specific future scenarios of COVID-19 pandemic", className="display-8", style = {'display': 'block', 'backgroundColor':'skyblue', 'width':'98%', "margin-right": "auto",  "margin-left": "auto"}),
+		html.H2("Prediction: Country specific future scenarios of COVID-19 pandemic", className="display-8", style = {'display': 'block', 'backgroundColor':'skyblue', 'width':'98%', 
+            "margin-right": "auto",  "margin-left": "auto", 'color':'navy'}),
     #html.P("Country specific future scenarios of COVID-19 pandemic.", className="lead"),
        		html.Hr(className="my-2"),
                 dcc.Markdown(''' We have developed a SEIR (compartmental) model to predict the future COVID-19 cases and evaluate its impact on the health care system. Our website contains the 
@@ -249,7 +250,7 @@ app.layout = html.Div([
                   Apparently, it is almost impossible to find the entire infected cases not only because most infected have very mild or no symptoms (not even noticeable), but also it is hard to 
                   track how many contacts have been made by an infected before being tested as positive. To view the results, please select the country you like, and press the 'Apply' button.''',
 
-          style = {'display': 'block', 'backgroundColor':'skyblue', 'textAlign': 'justify','width':'98%', 'font-size': 14, "margin-right": "auto", "margin-left": "auto", 'marginBottom':'2%'}), 
+          style = {'display': 'block', 'backgroundColor':'skyblue', 'textAlign': 'justify','width':'98%', 'font-size': 18, "margin-right": "auto", "margin-left": "auto", 'marginBottom':'2%'}), 
 
 	html.H6(dbc.Row(
 		    [
@@ -262,7 +263,7 @@ app.layout = html.Div([
                         dcc.Markdown('''Susceptible is the population who is supposed to be infected by COVID-19. Initially, it is the entire population of the country and as the pandemic progress, 
                             the volume of susceptible population declines. Final size of susceptible population (in our case, the susceptible on January 2022) represents the number of remaining 
                             uninfected people.''',
-                        style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 14 }),
+                        style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 18 }),
 
                         dbc.Row(
                             [
@@ -272,7 +273,7 @@ app.layout = html.Div([
                         ),
                         html.Hr(className="my-2"),
                         dcc.Markdown(''' 'Daily infected' literally means the number of infections per day.''' ,
-                        style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 14 }),
+                        style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 18 }),
 
                        dbc.Row(
                             [
@@ -282,7 +283,7 @@ app.layout = html.Div([
                         ),
                         html.Hr(className="my-2"),
                         dcc.Markdown(''' 'Total infected' has been just the cumulative representation of 'Daily infected'.''' ,
-                        style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 14 }),    
+                        style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 18 }),    
  
                        dbc.Row(
                             [
@@ -293,7 +294,7 @@ app.layout = html.Div([
                         html.Hr(className="my-2"),
                         dcc.Markdown('''Active cases represent the population who are still infected on a daily basis. This compartment counts an infected for several days until that particular 
                             infected become recovered or dead.''',
-                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 14 }),
+                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 18 }),
 
                         dbc.Row(
                             [
@@ -304,7 +305,7 @@ app.layout = html.Div([
                         html.Hr(className="my-2"),
                         dcc.Markdown('''Critical compartment is designed to represent the number of infected having severe symptoms and require ICU facilities on a daily basis. Here, a patient can 
                             remain critical for several days until his/her recovery or death.''',
-                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 14 }),
+                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 18 }),
 
                         dbc.Row(
                             [
@@ -314,7 +315,7 @@ app.layout = html.Div([
                         ),
                         html.Hr(className="my-2"),
                         dcc.Markdown('''Recovered compartment is the cumulative representation of recoveries on a daily basis. ''',
-                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 14 }),
+                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 18 }),
 
                         dbc.Row(
                             [
@@ -324,7 +325,7 @@ app.layout = html.Div([
                         ),
                         html.Hr(className="my-2"),
                         dcc.Markdown('''Dead compartment is the cumulative representation of deaths on a daily basis. ''',
-                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 14 }),
+                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 18 }),
 
  
                        dbc.Row(
@@ -335,7 +336,7 @@ app.layout = html.Div([
                         ),
                         html.Hr(className="my-2"),
                         dcc.Markdown(''' 'Case Fatality Rate (CFR)' takes the ratio of 'Dead' and 'Total infected' per day. This way we can predict the impact of COVID-19 on infected population.''',
-                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 14 }),
+                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 18 }),
 
                         dbc.Row(
                             [
@@ -347,7 +348,7 @@ app.layout = html.Div([
                         dcc.Markdown(''' 'Recoveries and Deaths in ICU' compartment is specially designed to evaluate the performance of health care. The patients who are currently 'Critical' and 
                             admitted in ICUs are accommodated in this compartment. Here, patients can either recover or die, but definitely after getting treatment. A well equipped health care 
                             consists sufficient ICU beds for critical patients, whereas an under equipped health care system is responsible for deaths of critical patients without treatment.''',
-                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 14 }),
+                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 18 }),
 
                         dbc.Row(
                             [
@@ -361,7 +362,7 @@ app.layout = html.Div([
                             because of insufficient ICUs and inability to admit critical patients. Patients are compelled to die due to this special situation, which can be described as “Triage”. 
                           By definition, Triage is a situation of classifying patients, according to the severity of their disease, age, as well as wealth to afford the treatment. 
                           An intense triage situation may indicate towards reform in health care of the corresponding countries.''',
-                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 14 }),
+                          style={'marginTop': '3%', 'marginBottom':'1%', 'textAlign': 'justify', 'font-size': 18 }),
 
                         dbc.Row(
                             [
@@ -385,11 +386,11 @@ app.layout = html.Div([
                     lock downs by countries) may influence our prognosis, but we will certainly try to keep updating it according to the future trend of the data. Gradually, We will also accommodate 
                     other countries under 'Prediction'. We hope you may admire our effort.'''),
 		], 
-	    style={'width':'98%', "margin-right": "auto", "margin-left": "auto", 'marginTop': 40, 'marginBottom': 30, 'backgroundColor':'cyan', 'textAlign': 'justify', 'font-size': 14, 'border': 'navy dashed', 'padding': '10px 10px 10px 10px'}
+	    style={'width':'98%', "margin-right": "auto", "margin-left": "auto", 'marginTop': 40, 'marginBottom': 30, 'backgroundColor':'aqua', 'textAlign': 'justify', 'font-size': 18, 'border': 'navy dashed', 'padding': '10px 10px 10px 10px'}
 		),
 
         html.H1("Contributers", className="display-8", style = {'display': 'block', 'backgroundColor':'skyblue', 'width':'16%', 
-            "margin-right": "auto",  "margin-left": "auto"}),
+            "margin-right": "auto",  "margin-left": "auto", 'color':'navy'}),
 
     #html.H1("Contributers"),
                         #dcc.Markdown('''Write Here!'''),
@@ -397,7 +398,7 @@ app.layout = html.Div([
  			           [
 	    dbc.Col(card1, md=4, style={"margin-right": "auto", "margin-left": "auto",'marginTop':'2%','padding':'10px 60px 80px 50px'}),
 	    dbc.Col(card2, md=4, style={ "margin-right": "auto", "margin-left": "auto",'marginTop':'2%','padding':'10px 50px 80px 50px'}),
-            dbc.Col(card4, md=4, style={ "margin-right": "auto", "margin-left": "auto",'marginTop':'2%','padding':'10px 50px 80px 50px'}),
+        dbc.Col(card4, md=4, style={ "margin-right": "auto", "margin-left": "auto",'marginTop':'2%','padding':'10px 50px 80px 50px'}),
 					]
 				   )
 			),
@@ -406,12 +407,13 @@ app.layout = html.Div([
 	        dcc.Markdown('''Contacts: For any queries, requests or suggestions, you are most welcome to send an email to 'predictioncovid@gmail.com'. All contributors have access to the email. 
                 We will be glad to answer according to our capacity.'''),
     	], 
-	style={'width':'98%', "margin-right": "auto", "margin-left": "auto",'marginTop':'2%','marginBottom':'5%', 'border': 'navy dashed','textAlign': 'justify', 'font-size': 14, 'padding': '10px 10px 10px 10px'}
+	style={'width':'98%', "margin-right": "auto", "margin-left": "auto",'marginTop':'2%','marginBottom':'5%', 'border': 'navy dashed','textAlign': 'justify', 'font-size': 20, 
+    'padding': '10px 10px 10px 10px', 'backgroundColor':'steelblue', 'color':'white'}
     ),),
 
 ], id = 'page-a' ),
 ],
-               style = {'display':'block', 'width':'80rem','backgroundColor':'skyblue', 'marginTop': '2%', 'marginBottom':'2%', "margin-right": "auto", "margin-left": "auto", 
+               style = {'display':'block', 'width':'95rem','backgroundColor':'skyblue', 'marginTop': '2%', 'marginBottom':'2%', "margin-right": "auto", "margin-left": "auto", 
                'padding': '30px 10px 30px 10px'}
 )
 
