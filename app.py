@@ -306,8 +306,8 @@ app.layout = html.Div([
 
     
     html.Div(dbc.Row([
-	        dcc.Markdown(''' 'Prediction' is developed by: Shalu Dwivedi [(Profile)](https://www.linkedin.com/in/shaludwivedi/), Suman Chakraborty [(Designation)]
-                (https://www.schleiden.uni-jena.de/Bioinformatik_Mitarbeiterliste) and Dr. Jan Ewald [(Profile)](https://www.schleiden.uni-jena.de/Bioinformatik_Ewald). For any queries, 
+	        dcc.Markdown(''' 'Prediction' is developed by Shalu Dwivedi [(Profile)](https://www.linkedin.com/in/shaludwivedi/) and Suman Chakraborty [(Designation)]
+                (https://www.schleiden.uni-jena.de/Bioinformatik_Mitarbeiterliste) with an immense contribution from Dr. Jan Ewald [(Profile)](https://www.schleiden.uni-jena.de/Bioinformatik_Ewald). For any queries, 
                 requests or suggestions regarding our COVID-19 prognosis, you are most welcome to send an email to 'predictioncovid@gmail.com'. 
                 All contributors have access to the email. We will be glad to answer according to our capacity.'''),
     	], 
